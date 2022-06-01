@@ -3093,9 +3093,19 @@ and a <a for=/>response</a> <var>response</var>, is to run these steps:
 
   <p class=note>If there is an exception, <var>response</var> is not JSON. If there is not, it is.
 
+ <li><p>Let <var>potentialMIMETypeForEncoding</var> be the result of <a>extracting a MIME type</a>
+ given <var>response</var>'s <a for=response>header list</a>.
+
+ <li>
+  <p>Let <var>encoding</var> be the result of <a>legacy extracting an encoding</a> given
+  <var>potentialMIMETypeForEncoding</var> and <var>request</var>'s
+  <a for=request>no-cors JavaScript fallback encoding</a>.
+
+  <p class=note>Equivalently to <a>fetch a classic script</a>, this ignores the
+  <a for="MIME type" lt=essence>MIME type essence</a>.
+
  <li><p>Let <var>sourceText</var> be the result of <a for=/>decoding</a>
- <var>responseBodyBytes</var> given <var>request</var>'s
- <a for=request>no-cors JavaScript fallback encoding</a>.
+ <var>responseBodyBytes</var> given <var>encoding</var>.
 
  <li><p>If <a>ParseText</a>(<var>sourceText</var>, <a>Script</a>) returns a <a>Script Record</a>,
  then return true.
